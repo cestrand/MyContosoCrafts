@@ -3,14 +3,28 @@
 @using Microsoft.AspNetCore.Components.Web
 @inject JsonFileProductService ProductService
 
+<div class="container-fluid">
 <h3>ProductList</h3>
-<ul>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 gy-2">
     @foreach (var product in ProductService.GetProducts())
     {
-        <li><img src="@product.Image" style="height:50px;" /><a href="@product.Url">@product.Title</a></li>
+            <div class="card p-0">
+                <img src="@product.Image" class="card-img-top" style="height:200px;" alt="@($"Image that shows {product.Title}")" />
+                <div class="card-body">
+                    <h5 class="card-title">@product.Title</h5>
+                    <p class="card-text">@product.Description</p>
+
+                </div>
+                <div class="card-footer">
+                    <a href="@product.Url" class="btn btn-primary">More</a>
+                </div>
+            </div>
     }
+    </div>
+
+</div>
     
-</ul>
+
 
 @code {
 
