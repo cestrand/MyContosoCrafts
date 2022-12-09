@@ -36,5 +36,11 @@ public class Product
         get; set;
     }
 
+    public int[]? Rating
+    {
+        get; set;
+    }
+
+
     public string ToString() => JsonSerializer.Serialize<Product>(this);
 }

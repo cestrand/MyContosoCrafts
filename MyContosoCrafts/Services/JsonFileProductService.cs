@@ -24,4 +24,28 @@ public class JsonFileProductService
                 PropertyNameCaseInsensitive = true
             });
     }
+
+    public void AddRating(string productId, int rating)
+    {
+        var products = GetProducts();
+        var product = products.First(x => (x.Id == productId));
+        if (product.Rating is null)
+        {
+            product.Rating = new[] { rating };
+        }
+        else
+        {
+            product.Rating = product.Rating.Append(rating).ToArray();
+        }
+        SaveProducts(products.ToArray());
+    }
+
+    public void SaveProducts(Product[] products)
+    {
+        byte[] bytes = JsonSerializer.SerializeToUtf8Bytes(products, new JsonSerializerOptions
+        {
+            WriteIndented = true,
+        });
+        File.WriteAllBytes(JsonFilePath, bytes);
+    } 
 }

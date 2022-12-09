@@ -13,6 +13,7 @@ public class Program
         // Add services to the container.
         builder.Services.AddRazorPages();
         builder.Services.AddServerSideBlazor();
+        builder.Services.AddControllers();
 
         var app = builder.Build();
 
@@ -33,6 +34,7 @@ public class Program
 
         app.MapRazorPages();
         app.MapBlazorHub();
+        app.MapControllers();
 
         app.Run();
     }
