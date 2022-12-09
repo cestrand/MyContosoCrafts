@@ -1,0 +1,17 @@
+﻿@using MyContosoCrafts.Models
+@using MyContosoCrafts.Services
+@using Microsoft.AspNetCore.Components.Web
+@inject JsonFileProductService ProductService
+
+<h3>ProductList</h3>
+<ul>
+    @foreach (var product in ProductService.GetProducts())
+    {
+        <li><img src="@product.Image" style="height:50px;" /><a href="@product.Url">@product.Title</a></li>
+    }
+    
+</ul>
+
+@code {
+
+}

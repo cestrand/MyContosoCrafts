@@ -1,5 +1,7 @@
 ﻿@page
 @model IndexModel
+@using MyContosoCrafts.Components
+
 @{
     ViewData["Title"] = "Home page";
 }
@@ -9,8 +11,4 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
-<ul>
-@{ foreach(var product in Model.Products) {
-    <li>@product.Title</li>
-}}
-</ul>
+@(await Html.RenderComponentAsync<ProductList>(RenderMode.ServerPrerendered))
